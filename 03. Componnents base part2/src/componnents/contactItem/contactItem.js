@@ -5,12 +5,13 @@ class ContactItem extends React.Component{
     state = {
         clicked: false,
         btnContectText: "Contact Now",
-        avatar: this.props.avatar
+        avatar: this.props.avatar,
+        contactName: this.props.contactName
 
     }
 
     onAvatar = () => {
-        const ava = 99;
+        const ava = Math.floor(Math.random() * (99 - 1 + 1)) + 1;
         this.setState({
             avatar: ava
         })
@@ -21,7 +22,8 @@ class ContactItem extends React.Component{
         if (!this.state.clicked){
             this.setState({
                 clicked: true,
-                btnContectText: "Clicked"
+                btnContectText: "Clicked",
+                contactName: "Sara"
             })
         }
         else {
@@ -54,7 +56,7 @@ class ContactItem extends React.Component{
                     <img className="rounded-circle" src={url} />
             </div>
             <div className="media-body">
-                <h4>{this.props.contactName}</h4>
+                <h4>{this.state.contactName}</h4>
                 <p style={Style}> {this.props.contactDesc}</p>
                 
             </div>
