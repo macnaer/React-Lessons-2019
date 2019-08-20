@@ -3,9 +3,9 @@ import ContactItem from '../contactItem/contactItem';
 import "./contact-list.css";
 
 
-const ContactLists = (props) => {
+const ContactLists = ({ContactList}) => {
     // console.log(props);
-    const contactItem = props.ContactList.map((item) => {
+    const contactItem = ContactList.map((item) => {
         return(
             <ContactItem  key={item.id} vip={item.vip} sex={item.sex} avatar={item.avatar} contactName={item.contactName} contactDesc={item.contactDesc} />
         )
