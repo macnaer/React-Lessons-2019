@@ -7,28 +7,45 @@ import Header from "./componnents/header/headerComponnent";
 import ContactLists from "./componnents/contactsList/contactList";
 import Search from "./componnents/search/search";
 
-const App = () => {
+class App extends React.Component  {
 
-    const RemoveContact = (id) => {
-        console.log("Remove contact => ", id);
+    state = {
+        List : [
+            { id: 1, vip: false, sex: "women", avatar: 11 , contactName: "Camila Terry", contactDesc: "Camila Terry Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
+            { id: 2, vip: true, sex: "men", avatar: 34 , contactName: "Bob Terry", contactDesc: "Bob Terry Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
+            { id: 3, vip: true, sex: "women", avatar: 72 , contactName: "Jesica Smith", contactDesc: "Jesica Smith Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
+            { id: 4, vip: true, sex: "men", avatar: 95 , contactName: "Jack Sparrow", contactDesc: "Jack Sparrow Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" }
+        ]
     }
 
-    const List = [
-        { id: 1, vip: false, sex: "women", avatar: 11 , contactName: "Camila Terry", contactDesc: "Camila Terry Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
-        { id: 2, vip: true, sex: "men", avatar: 34 , contactName: "Bob Terry", contactDesc: "Bob Terry Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
-        { id: 3, vip: true, sex: "women", avatar: 72 , contactName: "Jesica Smith", contactDesc: "Jesica Smith Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
-        { id: 4, vip: true, sex: "men", avatar: 95 , contactName: "Jack Sparrow", contactDesc: "Jack Sparrow Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" }
-    ]
-    return(
+    RemoveContact = (id) => {
+        console.log("Remove contact => ", id);
+        this.setState((state) => {
+            const index = this.state.List.findIndex((elem) => elem.id == id);
+            console.log("index", index);
+            
+            const firstPart = this.state.List.slice(0,index);
+            const lastPart = this.state.List.slice(index + 1);
+            const newList = [...firstPart, ...lastPart];
+
+            return{
+                List: newList
+            }
+        })
+    }
+
+    render(){
+        return(
         <section className="row-section">
             <div className="container">
                 <Header />
                 <Search />
-                <ContactLists ContactList={List}  RemoveContact={RemoveContact} />
+                <ContactLists ContactList={this.state.List}  RemoveContact={this.RemoveContact} />
             </div>
         </section>
-        
-    );
+        );
+    }
+    
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));
