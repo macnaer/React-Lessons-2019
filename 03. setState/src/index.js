@@ -6,8 +6,11 @@ import './index.css';
 import Header from "./componnents/header/headerComponnent";
 import ContactLists from "./componnents/contactsList/contactList";
 import Search from "./componnents/search/search";
+import AddContact from "./componnents/addContact/addContact";
 
 class App extends React.Component  {
+
+    counterID = 1000;
 
     state = {
         List : [
@@ -34,6 +37,28 @@ class App extends React.Component  {
         })
     }
 
+    addContact = () => {
+        const contact = {
+                id: this.counterID++,
+                vip: false,
+                sex: "women",
+                avatar: Math.floor(Math.random() * (99 - 1 + 1)) + 1,
+                contactName: "Camila Terry",
+                contactDesc: "Camila Terry Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"
+        }
+
+        const newContactArr = [
+            ...this.state.List,
+            contact
+        ];
+
+        this.setState((state) => {
+            return{
+                List: newContactArr
+            }
+        })
+    }
+
     render(){
         return(
         <section className="row-section">
@@ -41,6 +66,7 @@ class App extends React.Component  {
                 <Header />
                 <Search />
                 <ContactLists ContactList={this.state.List}  RemoveContact={this.RemoveContact} />
+                <AddContact addContact={this.addContact} />
             </div>
         </section>
         );
