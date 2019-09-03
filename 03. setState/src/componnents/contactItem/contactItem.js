@@ -41,6 +41,7 @@ class ContactItem extends React.Component{
                  star: !this.state.star
              }
          })
+         this.props.onFavorite();
      }
     render (){
          console.log("Contact to ", this.props.id);

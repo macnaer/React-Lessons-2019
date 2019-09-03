@@ -3,11 +3,11 @@ import ContactItem from '../contactItem/contactItem';
 import "./contact-list.css";
 
 
-const ContactLists = ({ContactList, RemoveContact}) => {
+const ContactLists = ({ContactList, RemoveContact, onFavorite}) => {
     // console.log(props);
     const contactItem = ContactList.map((item) => {
         return(
-            <ContactItem RemoveContact={() => RemoveContact(item.id)}  key={item.id} id={item.id} vip={item.vip} sex={item.sex} avatar={item.avatar} contactName={item.contactName} contactDesc={item.contactDesc} />
+            <ContactItem onFavorite={() => onFavorite(item.id)} RemoveContact={() => RemoveContact(item.id)}  key={item.id} id={item.id} vip={item.vip} sex={item.sex} avatar={item.avatar} contactName={item.contactName} contactDesc={item.contactDesc} />
         )
     })
 

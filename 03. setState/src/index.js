@@ -15,16 +15,16 @@ class App extends React.Component  {
     state = {
         List : [
             { id: 1, vip: false, sex: "women", avatar: 11 , contactName: "Camila Terry", contactDesc: "Camila Terry Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
-            { id: 2, vip: true, sex: "men", avatar: 34 , contactName: "Bob Terry", contactDesc: "Bob Terry Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
-            { id: 3, vip: true, sex: "women", avatar: 72 , contactName: "Jesica Smith", contactDesc: "Jesica Smith Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
-            { id: 4, vip: true, sex: "men", avatar: 95 , contactName: "Jack Sparrow", contactDesc: "Jack Sparrow Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" }
+            { id: 2, vip: false, sex: "men", avatar: 34 , contactName: "Bob Terry", contactDesc: "Bob Terry Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
+            { id: 3, vip: false, sex: "women", avatar: 72 , contactName: "Jesica Smith", contactDesc: "Jesica Smith Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
+            { id: 4, vip: false, sex: "men", avatar: 95 , contactName: "Jack Sparrow", contactDesc: "Jack Sparrow Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" }
         ]
     }
 
     RemoveContact = (id) => {
         console.log("Remove contact => ", id);
         this.setState((state) => {
-            const index = this.state.List.findIndex((elem) => elem.id == id);
+            const index = this.state.List.findIndex((elem) => elem.id === id);
             console.log("index", index);
             
             const firstPart = this.state.List.slice(0,index);
@@ -37,15 +37,23 @@ class App extends React.Component  {
         })
     }
 
-    addContact = () => {
-        const contact = {
-                id: this.counterID++,
-                vip: false,
-                sex: "women",
-                avatar: Math.floor(Math.random() * (99 - 1 + 1)) + 1,
-                contactName: "Camila Terry",
-                contactDesc: "Camila Terry Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"
+    addNewContact = (sex, contactName, contactDesc) => {
+        return{
+            id: this.counterID++,
+            vip: false,
+            sex: sex,
+            avatar: Math.floor(Math.random() * (99 - 1 + 1)) + 1,
+            contactName: contactName,
+            contactDesc: contactDesc
         }
+    }
+
+    onFavorite = (id) => {
+        console.log("Favorite =>  ", id);
+    }
+
+    addContact = () => {
+        const contact = this.addNewContact("women", "Jessica Terry", "Jess description");
 
         const newContactArr = [
             ...this.state.List,
@@ -65,7 +73,9 @@ class App extends React.Component  {
             <div className="container">
                 <Header />
                 <Search />
-                <ContactLists ContactList={this.state.List}  RemoveContact={this.RemoveContact} />
+                <ContactLists ContactList={this.state.List}
+                  RemoveContact={this.RemoveContact}
+                  onFavorite={this.onFavorite} / >
                 <AddContact addContact={this.addContact} />
             </div>
         </section>
