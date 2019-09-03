@@ -8,7 +8,6 @@ class ContactItem extends React.Component{
         btnContectText: "Contact Now",
         avatar: this.props.avatar,
         contactName: this.props.contactName,
-        star: false
     }
 
     onAvatar = () => {
@@ -19,7 +18,7 @@ class ContactItem extends React.Component{
     }
 
     onContactClick = () => {
-        console.log("Contact to ", this.props.id);
+        //console.log("Contact to ", this.props.id);
         if (!this.state.clicked){
             this.setState({
                 clicked: true,
@@ -44,16 +43,17 @@ class ContactItem extends React.Component{
          this.props.onFavorite();
      }
     render (){
-         console.log("Contact to ", this.props.id);
+         console.log("Item props ", this.props);
 
         let btnContactName = "btn btn-default";
         if (this.state.clicked){
             btnContactName = "btn btn-danger"
         }
-       
+    
 
+        let vipStatus = this.props.vip;
         let starClass = "fa fa-star-o fa-2x star";
-        if (this.state.star){
+        if (vipStatus) {
             starClass = "fa fa-star fa-2x star"
         }
         

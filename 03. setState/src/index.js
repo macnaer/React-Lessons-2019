@@ -22,10 +22,10 @@ class App extends React.Component  {
     }
 
     RemoveContact = (id) => {
-        console.log("Remove contact => ", id);
+        //console.log("Remove contact => ", id);
         this.setState((state) => {
             const index = this.state.List.findIndex((elem) => elem.id === id);
-            console.log("index", index);
+            //console.log("index", index);
             
             const firstPart = this.state.List.slice(0,index);
             const lastPart = this.state.List.slice(index + 1);
@@ -49,15 +49,23 @@ class App extends React.Component  {
     }
 
     onFavorite = (id) => {
-        console.log("Favorite =>  ", id);
-         const index = this.state.List.findIndex((elem) => elem.id === id);
-        console.log("vip => ", this.state.List[index].vip);
-        //Write code heare!
-        console.log("vip => ", this.state.List[index].vip);
+
+        this.setState((state) => {
+
+            const index = this.state.List.findIndex((elem) => elem.id === id);
+             
+            const newVip = this.state.List.slice();
+            newVip[index].vip = !newVip[index].vip;
+            //console.log(newVip[index].vip);
+            return {
+                vip: !this.newVip
+            }
+        })
+        
     }
 
-    addContact = () => {
-        const contact = this.addNewContact("women", "Jessica Terry", "Jess description");
+    addContact = (sex, name, description) => {
+        const contact = this.addNewContact(sex, name, description);
 
         const newContactArr = [
             ...this.state.List,
