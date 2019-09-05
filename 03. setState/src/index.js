@@ -80,16 +80,25 @@ class App extends React.Component  {
         })
     }
 
-    onSearch = (item) => {
-        console.log(item);
+    onSearch = (searchValue) => {
+         this.setState({
+            findContact: searchValue
+        })
     }
 
-    onShowContact = () => {
-        return this.state.List;
+    onShowContact = (items, searchValue) => {
+       
+        if (searchValue.length === 0) {
+            return items;
+        }
+
+        return items.filter((item) => {
+            return item.contactName.toLowerCase().indexOf(searchValue.toLowerCase()) > -1;
+        });
     }
 
     render(){
-        let showContacts = this.onShowContact();
+        const showContacts = this.onShowContact(this.state.List, this.state.findContact);
         return(
         <section className="row-section">
             <div className="container">
