@@ -18,7 +18,8 @@ class App extends React.Component  {
             { id: 2, vip: true, sex: "men", avatar: 34 , contactName: "Bob Terry", contactDesc: "Bob Terry Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
             { id: 3, vip: false, sex: "women", avatar: 72 , contactName: "Jesica Smith", contactDesc: "Jesica Smith Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
             { id: 4, vip: false, sex: "men", avatar: 95 , contactName: "Jack Sparrow", contactDesc: "Jack Sparrow Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" }
-        ]
+        ],
+        findContact: ""
     }
 
     RemoveContact = (id) => {
@@ -79,13 +80,22 @@ class App extends React.Component  {
         })
     }
 
+    onSearch = (item) => {
+        console.log(item);
+    }
+
+    onShowContact = () => {
+        return this.state.List;
+    }
+
     render(){
+        let showContacts = this.onShowContact();
         return(
         <section className="row-section">
             <div className="container">
                 <Header />
-                <Search />
-                <ContactLists ContactList={this.state.List}
+                <Search onSearch={this.onSearch} / >
+                <ContactLists ContactList={showContacts}
                   RemoveContact={this.RemoveContact}
                   onFavorite={this.onFavorite} / >
                 <AddContact addContact={this.addContact} />
