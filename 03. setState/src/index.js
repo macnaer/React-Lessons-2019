@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Header from "./componnents/header/headerComponnent";
 import ContactLists from "./componnents/contactsList/contactList";
 import AddContact from "./componnents/addContact/addContact";
+import NotFound from "./componnents/noFound/notFound";
 
 class App extends React.Component  {
 
@@ -102,14 +103,16 @@ class App extends React.Component  {
         return(
         <section className="row-section">
             <div className="container">
-                <Header />
+                
                 <Router>
+                <Header />
                     <Switch>
-                        <Route path="/" exact render={() => <ContactLists ContactList={showContacts}
+                        <Route path="/"  exact render={() => <ContactLists ContactList={showContacts}
                          RemoveContact={this.RemoveContact}
                           onFavorite={this.onFavorite}
                            onSearch={this.onSearch} />} /> 
                         <Route path="/add" exact render={() => <AddContact addContact={this.addContact} />} />
+                        <Route component={NotFound} />
                     </Switch>
                 </Router>
             </div>
