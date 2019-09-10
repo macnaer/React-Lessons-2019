@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 // Componnents 
 import Header from "./componnents/header/headerComponnent";
 import ContactLists from "./componnents/contactsList/contactList";
-import Search from "./componnents/search/search";
 import AddContact from "./componnents/addContact/addContact";
 
 class App extends React.Component  {
@@ -103,11 +103,15 @@ class App extends React.Component  {
         <section className="row-section">
             <div className="container">
                 <Header />
-                <Search onSearch={this.onSearch} / >
-                <ContactLists ContactList={showContacts}
-                  RemoveContact={this.RemoveContact}
-                  onFavorite={this.onFavorite} / >
-                <AddContact addContact={this.addContact} />
+                <Router>
+                    <Switch>
+                        <Route path="/" exact render={() => <ContactLists ContactList={showContacts}
+                         RemoveContact={this.RemoveContact}
+                          onFavorite={this.onFavorite}
+                           onSearch={this.onSearch} />} /> 
+                        <Route path="/add" exact render={() => <AddContact addContact={this.addContact} />} />
+                    </Switch>
+                </Router>
             </div>
         </section>
         );
