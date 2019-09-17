@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import APIService from "./APIClient/api";
 import './index.css';
+
+// Components
+import Header from "./Components/Header/Header";
+import Navbar from "./Components/Navbar/Navbar";
+import NewsList from "./Components/NewsList/NewsList";
 
 class App extends React.Component{
     apiService = new APIService();
@@ -28,16 +33,23 @@ class App extends React.Component{
     }
 
     render(){
-        console.log( "STATE => ",this.state.NewsList);
+        const List = this.state.NewsList;
+        //console.log( "STATE => ",this.state.NewsList);
         return (
-          <div>
-            
-          </div>
+          <Fragment>
+            <header>
+              <div className="container-fluid ">
+                <div className="container">
+                  <Header />
+                  <Navbar />
+                </div>
+              </div>
+            </header>
+            <NewsList List={List} />
+          </Fragment>
         );
     }
 }
-
-
 ReactDOM.render(<App />, document.getElementById('root'));
 
 
