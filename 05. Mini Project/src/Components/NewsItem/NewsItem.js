@@ -10,13 +10,13 @@ class NewsItem extends React.Component {
   };
 
   updateNewsItem = () => {
-    const { title, author, description, img, newsID } = this.props;
+    const { title, author, description, img, publishedAt } = this.props;
     this.setState({
       title: title,
       author: author,
       description: description,
       img: img,
-      newsID: newsID
+      publishedAt: publishedAt
     });
   };
 
@@ -24,8 +24,13 @@ class NewsItem extends React.Component {
     this.updateNewsItem();
   }
 
+  onDetail = () => {
+    const id = this.state.publishedAt;
+    this.props.onNewsDetail(id);
+  }
+
   render() {
-    console.log("props => ", this.props);
+    //console.log("props => ", this.props);
     //console.log("state => ", this.state);
     const { title, author, description, img } = this.state;
     return (
@@ -34,10 +39,20 @@ class NewsItem extends React.Component {
           <div className="col block1">
             <div className="label">News</div>
             <div id="sport">
+              <h3 className="newsTitle">{title}</h3>
               <div className="newsAuthor">{author}</div>
-              <div className="newsAuthor">{title}</div>
-              <div className="newsAuthor">{description}</div>
-              <img src={img} alt />
+              <div className="newsInfo">
+                <div className="newsDescription col">{description}</div>
+                <img src={img} alt className="newsImage" />
+              </div>
+              <button
+                type="button"
+                className="btn btn-success"
+                onClick={this.onDetail}
+              >
+                Read more
+              </button>
+              <div style={{color: 'white'}}>{this.state.newsID}</div>
             </div>
           </div>
         </div>

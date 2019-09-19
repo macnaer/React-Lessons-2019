@@ -10262,3 +10262,23 @@ body {
   align-items: center;
   height: 100%;
 }
+
+.newsImage {
+  border-radius: 50px;
+  background-position: center;
+  height: 250px;
+  width: 437px;
+}
+
+.newsInfo {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row-reverse;
+  margin-bottom: 20px;
+}
+
+.newsDescription {
+  color: white;
+  font-style: italic;
+  text-align: justify;
+}
