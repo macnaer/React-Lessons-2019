@@ -5,26 +5,28 @@ class NewsItem extends React.Component {
     title: null,
     author: null,
     description: null,
-    img: null
+    img: null,
+    newsID: null
   };
 
   updateNewsItem = () => {
-    const { title, author, description, img } = this.props;
+    const { title, author, description, img, newsID } = this.props;
     this.setState({
       title: title,
       author: author,
       description: description,
-      img: img
+      img: img,
+      newsID: newsID
     });
-  }
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     this.updateNewsItem();
   }
 
   render() {
-    // console.log("props => ", this.props);
-    console.log("state => ", this.state);
+    console.log("props => ", this.props);
+    //console.log("state => ", this.state);
     const { title, author, description, img } = this.state;
     return (
       <Fragment>

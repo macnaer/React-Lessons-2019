@@ -57,6 +57,10 @@ class App extends React.Component {
       .catch(err => console.log(err.message));
   }
 
+  onNewsDetail =(id)=>{
+    console.log("onNewsDetail => ", id);
+  }
+
   render() {
     console.log("render");
     const List = this.state.NewsList;
@@ -71,7 +75,7 @@ class App extends React.Component {
             </div>
           </div>
         </header>
-        <NewsList List={List} />
+        <NewsList List={List} onNewsDetail={this.onNewsDetail} />
       </Fragment>
     );
   }
