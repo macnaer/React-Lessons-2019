@@ -1,45 +1,47 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 
+class NewsItem extends React.Component {
+  state = {
+    title: null,
+    author: null,
+    description: null,
+    img: null
+  };
 
-class NewsItem extends React.Component{
-    render(){
-        return (
-          <Fragment>
-            <div className="row blocks">
-              <div className="col block1">
-                <div className="label">SPORT</div>
-                <div id="sport"> </div>
-              </div>
-              <div className="col block2">
-                <div className="label">ENTERTAINMENT</div>
-                <div id="entertainment"></div>
-              </div>
+  updateNewsItem = () => {
+    const { title, author, description, img } = this.props;
+    this.setState({
+      title: title,
+      author: author,
+      description: description,
+      img: img
+    });
+  }
+
+  componentDidMount(){
+    this.updateNewsItem();
+  }
+
+  render() {
+    // console.log("props => ", this.props);
+    console.log("state => ", this.state);
+    const { title, author, description, img } = this.state;
+    return (
+      <Fragment>
+        <div className="row blocks">
+          <div className="col block1">
+            <div className="label">News</div>
+            <div id="sport">
+              <div className="newsAuthor">{author}</div>
+              <div className="newsAuthor">{title}</div>
+              <div className="newsAuthor">{description}</div>
+              <img src={img} alt />
             </div>
-
-            <div className="row blocks">
-              <div className="col block3">
-                <div className="label">SCIENCE</div>
-                <div id="science"></div>
-              </div>
-              <div className="col block4">
-                <div className="label">HEALTH</div>
-                <div id="health"></div>
-              </div>
-            </div>
-
-            <div className="row blocks">
-              <div className="col-7 block5">
-                <div className="label">TEHNOLOGY</div>
-                <div id="technology"></div>
-              </div>
-              <div className="col-4 block6">
-                <div className="label">FACTS</div>
-                <div className="facts"></div>
-              </div>
-            </div>
-          </Fragment>
-        );
-    }
+          </div>
+        </div>
+      </Fragment>
+    );
+  }
 }
 
 export default NewsItem;

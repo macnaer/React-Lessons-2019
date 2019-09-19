@@ -2,13 +2,21 @@ import React from "react";
 import NewsItem from "../NewsItem/NewsItem";
 
 const NewsList = ({ List }) => {
-  console.log("NewsList => ",List);
+  // console.log("NewsList => ",List);
   const newItem = List.map((item) => {
-      return {}
+    //console.log("one item => ", item);
+      return (
+        <NewsItem
+          author={item.author}
+          title={item.title}
+          description={item.description}
+          img={item.urlToImage}
+        />
+      );
   })
   return (
     <main>
-      {/* <div className="container mainBody">{newItem}</div> */}
+      <div className="container mainBody">{newItem}</div>
     </main>
   );
 };
