@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Header from "./componnents/header/headerComponnent";
 import ContactLists from "./componnents/contactsList/contactList";
 import AddContact from "./componnents/addContact/addContact";
+import ContactItem from "./componnents/contactItem/contactItem";
 import NotFound from "./componnents/noFound/notFound";
 
 class App extends React.Component  {
@@ -98,6 +99,10 @@ class App extends React.Component  {
         });
     }
 
+    contactDetails = (id) => {
+        console.log("contactDetails ID => ", id)
+    }
+
     render(){
         const showContacts = this.onShowContact(this.state.List, this.state.findContact);
         return(
@@ -110,7 +115,13 @@ class App extends React.Component  {
                         <Route path="/"  exact render={() => <ContactLists ContactList={showContacts}
                          RemoveContact={this.RemoveContact}
                           onFavorite={this.onFavorite}
-                           onSearch={this.onSearch} />} /> 
+                          onSearch={this.onSearch} 
+                          contactDetails={this.contactDetails} />
+                           } /> 
+                        <Route path="/:id" exact render={({match}) => {
+                            const { id } = match.params;
+                            return <ContactItem contactID={id} contactDetails={this.contactDetails} />
+                        }} /> 
                         <Route path="/add" exact render={() => <AddContact addContact={this.addContact} />} />
                         <Route component={NotFound} />
                     </Switch>

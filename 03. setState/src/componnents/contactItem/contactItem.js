@@ -5,7 +5,7 @@ class ContactItem extends React.Component{
 
     state = {
         clicked: false,
-        btnContectText: "Contact Now",
+        btnContactText: "Contact Now",
         avatar: this.props.avatar,
         contactName: this.props.contactName,
     }
@@ -17,18 +17,19 @@ class ContactItem extends React.Component{
         })
     }
 
+
     onContactClick = () => {
         //console.log("Contact to ", this.props.id);
         if (!this.state.clicked){
             this.setState({
                 clicked: true,
-                btnContectText: "Clicked",
+                btnContactText: "Clicked",
             })
         }
         else {
             this.setState({
                 clicked: false,
-                btnContectText: "Contact Now"
+                btnContactText: "Contact Now"
             })
         }
        
@@ -42,8 +43,13 @@ class ContactItem extends React.Component{
          })
          this.props.onFavorite();
      }
+
+    getContact = () => {
+        const id = this.props.id;
+        this.props.contactDetails(id);
+    } 
     render (){
-         console.log("Item props ", this.props);
+        console.log("Item props ", this.props);
 
         let btnContactName = "btn btn-default";
         if (this.state.clicked){
@@ -70,11 +76,11 @@ class ContactItem extends React.Component{
             </div>
             <div className="media-body">
                 <h4>{this.state.contactName}</h4>
-                <p style={Style}> {this.props.contactDesc}</p>
+                <p style={Style} onClick={this.getContact}> {this.props.contactDesc}</p>
                 
             </div>
             <div className="media-right align-self-center" onClick={this.onContactClick}>
-                <a href="#" className={btnContactName}>{this.state.btnContectText}</a>
+                <a href="#" className={btnContactName}>{this.state.btnContactText}</a>
             </div>
             <div className="media-right align-self-center">
                  <button type="button" className="btn btn-success" onClick={this.onAvatar}>Rand avatar</button>

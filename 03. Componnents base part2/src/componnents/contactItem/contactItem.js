@@ -62,10 +62,12 @@ class ContactItem extends React.Component{
             </div>
             <div className="media-right align-self-center" onClick={this.onContactClick}>
                 <a href="#" className={btnContactName}>{this.state.btnContectText}</a>
+                <button type="button" className="btn btn-success" onClick={this.onAvatar}>Rand avatar</button>
             </div>
-            <button type="button" className="btn btn-success" onClick={this.onAvatar}>Rand avatar</button>
+           
         </div>
         )
     }
 }
+
 export default ContactItem;
