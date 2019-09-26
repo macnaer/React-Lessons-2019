@@ -27,3 +27,16 @@ const reducer = (state = 0, action) => {
 };
 
 const store = createStore(reducer);
+document.getElementById("plus").addEventListener("click", () => {
+  store.dispatch({ type: "INC" });
+});
+
+document.getElementById("minus").addEventListener("click", () => {
+  store.dispatch({ type: "DEC" });
+});
+
+const update = () =>{
+document.getElementById("counter").innerHTML = store.getState();
+}
+
+store.subscribe(update);
