@@ -11,28 +11,26 @@
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 
-import { createStore } from "redux";
-
-const initialState = 0;
-
-const reducer = (state = 0, action) => {
-  switch (action.type) {
-    case "INC":
-      return state + 1;
-    case "DEC":
-      return state - 1;
-    default:
-      return state;
-  }
-};
+import { createStore, bindActionCreators } from "redux";
+import reducer from "./Reducer/Reducer";
+import * as actions from "./Actions/Action";
 
 const store = createStore(reducer);
-document.getElementById("plus").addEventListener("click", () => {
-  store.dispatch({ type: "INC" });
-});
+const { dispatch } = store;
 
-document.getElementById("minus").addEventListener("click", () => {
-  store.dispatch({ type: "DEC" });
+
+const { INC, DEC, ZERO, DOUBLE } = bindActionCreators(actions, dispatch);
+
+ 
+document.getElementById("plus").addEventListener("click", INC);
+document.getElementById("minus").addEventListener("click", DEC);
+document.getElementById("double").addEventListener("click", () => {
+  const count = 2;
+  DOUBLE(count);
+});
+document.getElementById("null").addEventListener("click", () =>  {
+  const payload = 0;
+  ZERO(payload);
 });
 
 const update = () =>{
