@@ -1,14 +1,12 @@
 const initialState = {
-  counter: 0,
+  counter: 0
 };
 
-const reducer = (state = 0, action) => {
+const reducer = (state = initialState.counter, action) => {
   switch (action.type) {
     case "INC":
       return state + 1;
     case "DEC":
-      console.log("DEC dispatch");
-      console.log('counter ', state);
       return state - 1;
     case "ZERO":
       return (state = action.payload);

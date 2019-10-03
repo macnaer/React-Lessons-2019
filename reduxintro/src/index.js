@@ -4,9 +4,13 @@ import { Provider } from "react-redux";
 // Components
 import Counter from "./Components/Counter/Counter";
 import { createStore} from "redux";
-import reducer from "./Reducer/Reducer";
+import RootReducer from "./Reducer/RootReducer";
+//import Reducer from "./Reducer/Reducer";
 // Redux
-const storeMy = createStore(reducer);
+// console.log("Reducer", RootReducer);
+const storeMy = createStore(RootReducer);
+
+console.log("storeMy => ", storeMy.getState());
 
 const App = () => {
     return (

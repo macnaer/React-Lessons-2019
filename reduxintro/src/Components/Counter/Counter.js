@@ -21,9 +21,10 @@ const Counter = ({ counter, DEC, INC, ZERO, DOUBLE }) => {
     </Fragment>
   );
 }; 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({Reducer}) => {  // Деструктуризація. Дістаємо необхідний redcer
+  console.log("state = > ", Reducer);
   return {
-    counter: state
+    counter: Reducer
   };
 };
 
