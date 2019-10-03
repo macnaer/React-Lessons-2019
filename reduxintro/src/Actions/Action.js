@@ -6,10 +6,10 @@ export const DEC = () => {
   return { type: "DEC" };
 };
 
-export const ZERO = payload => {
+export const ZERO = (payload) => {
   return { type: "ZERO", payload };
 };
 
-export const DOUBLE = (count) => {
-  return { type: "DOUBLE", count };
+export const DOUBLE = (payload) => {
+  return { type: "DOUBLE", payload };
 };

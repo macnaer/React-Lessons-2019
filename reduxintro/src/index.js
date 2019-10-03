@@ -6,11 +6,11 @@ import Counter from "./Components/Counter/Counter";
 import { createStore} from "redux";
 import reducer from "./Reducer/Reducer";
 // Redux
-const store = createStore(reducer);
+const storeMy = createStore(reducer);
 
 const App = () => {
     return (
-        <Provider store={store}>
+        <Provider store={storeMy}>
           <Counter />
         </Provider>
     )

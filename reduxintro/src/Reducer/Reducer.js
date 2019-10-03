@@ -1,22 +1,21 @@
-
 const initialState = {
   counter: 0,
-  name: "Null"
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = 0, action) => {
   switch (action.type) {
     case "INC":
-      return state.counter + 1;
+      return state + 1;
     case "DEC":
-      return state.counter - 1;
+      console.log("DEC dispatch");
+      console.log('counter ', state);
+      return state - 1;
     case "ZERO":
-      return (state.counter = action.payload);
+      return (state = action.payload);
     case "DOUBLE":
-      return state.counter * action.count;
+      return state * action.payload;
     default:
       return state;
   }
 };
-
 export default reducer;
