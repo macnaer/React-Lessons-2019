@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import Reducer from "./Reducer";
+import CounterReducer from "./counterReducer";
 import BuyReducer from "./TestReducer";
 
 export default combineReducers({
-  Reducer,
+  CounterReducer,
   BuyReducer
 });

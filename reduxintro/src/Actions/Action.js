@@ -13,3 +13,8 @@ export const ZERO = (payload) => {
 export const DOUBLE = (payload) => {
   return { type: "DOUBLE", payload };
 };
+
+export const DIV = (payload) => {
+  return { type: "DIV", payload };
+};
+

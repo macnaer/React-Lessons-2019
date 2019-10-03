@@ -1,30 +1,33 @@
 import React, {Fragment} from "react";
 import { connect } from "react-redux";
-import {INC, DEC, ZERO, DOUBLE  } from "../../Actions/Action";
+import { INC, DEC, ZERO, DOUBLE, DIV } from "../../Actions/Action";
 
-const Counter = ({ counter, DEC, INC, ZERO, DOUBLE }) => {
+const Counter = ({ counter, DEC, INC, ZERO, DOUBLE, DIV }) => {
   return (
     <Fragment>
-      <div id="counter">{counter}</div>
-      <button id="minus" onClick={DEC} className="btn btn-danger">
+      <div>{counter}</div>
+      <button  onClick={DEC} className="btn btn-danger">
         Minus
       </button>
-      <button id="plus" onClick={INC} className="btn btn-success">
+      <button onClick={INC} className="btn btn-success">
         Plus
       </button>
-      <button id="null" onClick={ZERO} className="btn btn-success">
+      <button  onClick={ZERO} className="btn btn-success">
         Zero
       </button>
-      <button id="double" onClick={DOUBLE} className="btn btn-warning">
+      <button  onClick={DOUBLE} className="btn btn-warning">
         Double
+      </button>
+      <button  onClick={DIV} className="btn btn-default">
+        Divisuin
       </button>
     </Fragment>
   );
 }; 
-const mapStateToProps = ({Reducer}) => {  // Деструктуризація. Дістаємо необхідний redcer
-  console.log("state = > ", Reducer);
+const mapStateToProps = ({CounterReducer}) => {  // Деструктуризація. Дістаємо необхідний redcer
+  console.log("state = > ", CounterReducer);
   return {
-    counter: Reducer
+    counter: CounterReducer
   };
 };
 
@@ -39,6 +42,10 @@ const mapDispatchToProps = dispatch => {
     DOUBLE: () => {
       const multi = 2;
       dispatch(DOUBLE(multi));
+    },
+    DIV: () => {
+      const division = 2;
+      dispatch(DIV(division));
     }
   };
 };

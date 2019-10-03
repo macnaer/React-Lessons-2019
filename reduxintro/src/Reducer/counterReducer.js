@@ -2,7 +2,7 @@ const initialState = {
   counter: 0
 };
 
-const reducer = (state = initialState.counter, action) => {
+const CounterReducer = (state = initialState.counter, action) => {
   switch (action.type) {
     case "INC":
       return state + 1;
@@ -12,8 +12,10 @@ const reducer = (state = initialState.counter, action) => {
       return (state = action.payload);
     case "DOUBLE":
       return state * action.payload;
+    case "DIV":
+      return state / action.payload;
     default:
       return state;
   }
 };
-export default reducer;
+export default CounterReducer;
