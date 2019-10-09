@@ -40,3 +40,5 @@ document.getElementById("counter").innerHTML = store.getState();
 }
 
 store.subscribe(update);
+
+//Test
